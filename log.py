@@ -22,8 +22,12 @@ def print_data(data):
         print("error,can't print the data ")
 
 # now it's time for queries
+# 'substr' is a fucntion Extracting a substring from a string
+# in this query we can use  log.path like concat('%',articles.slug,'%') but
+# it will take more time to execute
 query1='''select title, count(*) as num
-from articles join log on  articles.slug= substr(log.path,10)
+from articles join log on
+articles.slug= substr(log.path,10)
 GROUP BY title
 ORDER by num DESC limit 3 ;
  '''
