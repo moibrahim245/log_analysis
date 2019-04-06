@@ -52,5 +52,7 @@ query3='''Select to_char(errors.days, 'Mon-dd-YYYY'),
    order by precent DESC limit 1; '''
 data_1 = getdata(query1)
 data_2 = getdata(query2)
+data_3=getdata(query3)
 print_data(data_1)
 print_data(data_2)
+print(data_3[0][0] + "--" + str(data_3[0][1]) + "% \n")
