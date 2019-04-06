@@ -35,10 +35,12 @@ ORDER by num DESC limit 3 ;
  # we will use a view for the first join
  #create view artics as select articles.title,articles.author,log.path from articles
  #join log on articles.slug=substr(log.path,10);
- query2=''' select authors.name,count(*) as num
+query2=''' select authors.name,count(*) as num
   from artics join authors
   on artics.author=authors.id GROUP BY authors.name
  ORDER BY num DESC limit 3; '''
 
 data_1 = getdata(query1)
+data_2 = getdata(query2)
 print_data(data_1)
+print_data(data_2)
