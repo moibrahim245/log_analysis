@@ -33,13 +33,23 @@ ORDER by num DESC limit 3 ;
  '''
  #we need 2 joins in this query
  # we will use a view for the first join
- #create view artics as select articles.title,articles.author,log.path from articles
- #join log on articles.slug=substr(log.path,10);
+ #create view artics as select articles.title,articles.author,log.path from
+ #articles join log on articles.slug=substr(log.path,10);
 query2=''' select authors.name,count(*) as num
   from artics join authors
   on artics.author=authors.id GROUP BY authors.name
  ORDER BY num DESC limit 3; '''
 
+#mathematically  the percentage equal (error (visitors/allvisitors)*100)
+# we will create view for error and view for total visitors
+# the status for error is 404
+#create view errors as select cast(time as date) as days ,
+#count(* ) as num from log where status like '404%' group by days
+#select count(* ) as vistors ,cast(time as date) as days from log group by days;
+query3='''Select to_char(errors.days, 'Mon-dd-YYYY'),
+ round((errors.errors*100.0)/totalvistors.visitors,3) as precent
+  from errors join totalvistors on errors.days=totalvistors.days
+   order by precent DESC limit 1; '''
 data_1 = getdata(query1)
 data_2 = getdata(query2)
 print_data(data_1)
