@@ -24,8 +24,8 @@ to the Database
 
 # My Views
 1. problem2
-create view problem2 as select * from articles
-join log on articles.slug=substring(log.path,10,300)
+create view problem2 as select articles.title,articles.author,log.path from articles
+join log on articles.slug=substring(log.path,10,300);
 
 
 
