@@ -17,16 +17,17 @@ def getdata(query):
 def print_data(data):
     try:
         for d in data:
-            print(str(r[0])+"-->"+str(r[1])+" views \n")
+            print(str(d[0])+"-->"+str(d[1])+" views \n")
     except:
         print("error,can't print the data ")
 
 # now it's time for queries
 query1='''select title, count(*) as num
-from articles join  on log articles.slug= substr(log.path,10)
+from articles join log on  articles.slug= substr(log.path,10)
 GROUP BY title
 ORDER by num DESC limit 3 ;
  '''
 
 
-        
+data_1 = getdata(query1)
+print_data(data_1)
