@@ -33,4 +33,4 @@ join log on articles.slug=substr(log.path,10);``
 `create view errors as select cast(time as date) as days ,
  count(* ) as num from log where status like '404%' group by days ;``
 3. totalvisitors
-`select count(* ) as vistors , cast(time as date) as days from log group by days;`
+` create view totalvisitors as  select count(* ) as vistors , cast(time as date) as days from log group by days;`
