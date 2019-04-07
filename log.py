@@ -55,8 +55,8 @@ query2 = ''' select authors.name,count(*) as num
 
 
 query3 = '''Select to_char(errors.days, 'Mon-dd-YYYY'),
- round((errors.errors*100.0)/totalvistors.visitors,3) as precent
-  from errors join totalvistors on errors.days=totalvistors.days
+ round((errors.errors*100.0)/totalvisitors.visitors,3) as precent
+  from errors join totalvisitors on errors.days=totalvisitors.days
    order by precent DESC limit 1; '''
 data_1 = getdata(query1)
 data_2 = getdata(query2)
